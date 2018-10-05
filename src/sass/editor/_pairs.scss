@@ -1,0 +1,37 @@
+
+.expa-pairs {
+    &-inner {
+
+    }
+
+    &-delimiter {
+
+    }
+
+    &-field {
+
+        .components-base-control__field {
+            margin: 0;
+        }
+
+        &.key {
+
+        }
+
+        &.value {
+
+        }
+
+    }
+
+    &-bottom {
+        display: flex;
+        justify-content: end;
+        align-items: center;
+        margin: 0em 1em 1em 1em;
+
+        .expa-add-item {
+
+        }
+    }
+}

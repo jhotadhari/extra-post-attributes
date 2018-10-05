@@ -5,8 +5,8 @@
   "uri": "https://waterproof-webdesign.info/wppr_project/extra-post-attributes",
   "textDomain": "expa",
   "domainPath": "/languages",
-  "version": "0.0.0",
-  "description": "This is a beautiful plugin",
+  "version": "0.0.1",
+  "description": "Store additional attributes for post, pages and custom post types",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -25,6 +25,7 @@
     "@babel/core": "^7.1.2",
     "@babel/preset-env": "^7.1.0",
     "@babel/preset-react": "^7.0.0",
+    "array-move": "^1.0.0",
     "babel-eslint": "^8.2.3",
     "babelify": "10.0.0",
     "browserify-shim": "^3.8.14",
@@ -50,6 +51,8 @@
     "gruntify-eslint": "^4.0.0",
     "jstify": "^0.14.0",
     "load-grunt-tasks": "^3.5.2",
+    "node-bourbon": "^4.2.8",
+    "prop-types": "^15.6.2",
     "sort-object": "^3.0.2",
     "time-grunt": "^1.4.0",
     "uglifyify": "^4.0.5",
