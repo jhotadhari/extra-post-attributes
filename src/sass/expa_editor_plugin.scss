@@ -4,8 +4,34 @@
 // @import "mixins/mixins-master";
 
 @import "editor/flex-row";
-@import "editor/post-setting-row";
-// @import "editor/post-setting-panel";
+@import "editor/base-control-row";
+@import "editor/post-setting-panel";
+@import "editor/button";
 @import "editor/popover-content";
 @import "editor/pairs";
 
+.expa-inspector {
+
+    &-heading {
+        margin-top: 0.5em;
+        font-weight: bold;
+        font-size: larger;
+    }
+
+    &-help {
+        margin-bottom: 1em;
+    }
+
+    // .components-panel__body-toggle {
+    //     font-size: large;
+    // }
+
+}
+
+// .wp-block-expa-extra-post-attributes {
+
+//     ul ul {
+//         margin-left: 1em;
+//     }
+
+// }

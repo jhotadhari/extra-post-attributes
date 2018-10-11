@@ -1,0 +1,14 @@
+
+.components-button,
+.components-icon-button {
+    &.expa-button,
+    &.expa-button:not(:disabled):not([aria-disabled="true"]):not(.is-default) {
+        padding: 0.5em;
+        border-style: 1px $color__border-button;
+        border-radius: 3px;
+        background-color: transparentize( $color__background-button, 0.5 );
+        &:hover {
+            background-color: transparentize( $color__background-button, 0.25 );
+        }
+    }
+}

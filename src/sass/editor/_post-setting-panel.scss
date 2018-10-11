@@ -1,12 +1,8 @@
 
-.components-panel__body {
 
-    &.expa-post-settings-panel {
-        display: block;
-
-        .components-panel__body .components-panel__row {
-            display: block;
-        }
-
+.components-panel__row.expa-post-setting-row {
+    display: block;
+    & > * {
+        margin-top: 1em;
     }
 }

@@ -13,7 +13,7 @@ die;
  *
  * @return string		$list
  */
-function expa_get_post_list_by_attr( $attr_key = null, $extra_classes = array() ) {
+function expa_get_formatted_post_list_by_attr( $attr_key = null, $extra_classes = array() ) {
 	if ( null === $attr_key )
 		return false;
 

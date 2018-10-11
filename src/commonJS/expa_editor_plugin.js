@@ -5,31 +5,43 @@ const { __, setLocaleData } = wp.i18n;
 const { registerPlugin } = wp.plugins;
 const { Fragment } = wp.element;
 const { PluginPostStatusInfo } = wp.editPost;
-const { applyFilters } = wp.hooks;
+const { BaseControl } = wp.components;
 
 /**
  * Internal dependencies
  */
-import BasePostSettingsPopoverPairsComponent 	from './expa_editor_plugin/components/BasePostSettingsPopoverPairsComponent.jsx';
-import composeWithPostSettings					from './expa_editor_plugin/composeWithPostSettings';
+import defaults 					from './expa_editor_plugin/defaults';
+import { getExpaDefault }			from './expa_editor_plugin/defaults';
+import composeWithExpaPostAtts		from './expa_editor_plugin/composeWithExpaPostAtts';
+import BasePopoverPairsComponent 	from './expa_editor_plugin/components/BasePopoverPairsComponent.jsx';
 
 // compose components
-const PostSettingsPopoverPairsComponent = composeWithPostSettings( BasePostSettingsPopoverPairsComponent, 'expa_post_atts' );
+const PopoverPairsComponent = composeWithExpaPostAtts( BasePopoverPairsComponent );
 
 setLocaleData( expaData.locale, 'expa' );
+
+
+
 
 const ExpaPostStatusInfoRow = () => (
     <Fragment>
 
 		<PluginPostStatusInfo
-			className='expa-post-setting-row'
+			className={ 'expa-post-setting-row' }
 		>
 
-			<PostSettingsPopoverPairsComponent
-				label={ applyFilters( 'expa.postSettingsPairs.label', __( 'Extra Post Attribues', 'expa' ) ) }
-				defaultPairs={ applyFilters( 'expa.postSettingsPairs.defaultPairs', [] ) }
+			<BaseControl
+				label={ getExpaDefault( 'label' ) }
+				className={ 'expa-base-control-row' }
+			>
 
-			/>
+				<PopoverPairsComponent
+					label={ getExpaDefault( 'label' ) }
+					defaultPairs={ getExpaDefault( 'pairs' ) }
+				/>
+
+			</BaseControl>
+
 
 		</PluginPostStatusInfo>
 

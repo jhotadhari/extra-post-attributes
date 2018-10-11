@@ -1,7 +1,7 @@
+
+
 .expa-popover-content {
-
     .components-popover__header {
-
         &-title {
             font-weight: bold;
         }
@@ -9,5 +9,9 @@
 
     &-inner {
         padding: 1em;
+        .expa-button {
+            margin-left: 5px;
+        }
     }
+
 }

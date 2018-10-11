@@ -5,7 +5,7 @@
   "uri": "https://waterproof-webdesign.info/wppr_project/extra-post-attributes",
   "textDomain": "expa",
   "domainPath": "/languages",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Store additional attributes for post, pages and custom post types",
   "main": "index.js",
   "scripts": {
@@ -16,7 +16,7 @@
   "authorUri": "https://waterproof-webdesign.info/",
   "license": "GNU General Public License v2 or later",
   "licenseUri": "http://www.gnu.org/licenses/gpl-2.0.html",
-  "tags": "",
+  "tags": "gutenberg,attributes,meta",
   "donateLink": "https://waterproof-webdesign.info/donate",
   "wpVersionTested": "4.9.8",
   "wpRequiresAtLeast": "4.9.6",
@@ -56,6 +56,7 @@
     "sort-object": "^3.0.2",
     "time-grunt": "^1.4.0",
     "uglifyify": "^4.0.5",
+    "shortid": "^2.2.13",
     "underscore": "^1.9.1"
   },
   "browserify-shim": {

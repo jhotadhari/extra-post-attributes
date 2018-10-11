@@ -44,27 +44,7 @@ class Expa_Editor_Plugin {
 	}
 
 	protected function get_localize_data(){
-		global $post;
-
-		if ( ! $post instanceof WP_Post ) return array();
-
-		// $current_user = wp_get_current_user();
 		return array(
-			// 'plugin_dir_url' => Expa_Extra_post_attributes::plugin_dir_url(),
-			// 'user' => array(
-			// 	'id' => strval( $current_user->ID ),
-			// ),
-			// 'post' => array(
-			// 	'id' => strval( $post->ID ),
-			// ),
-			// 'api' => array(
-			// 	'root'          => esc_url_raw( get_rest_url() ),
-			// 	'nonce'         => ( wp_installing() && ! is_multisite() ) ? '' : wp_create_nonce( 'wp_rest' ),
-			// 	'versionString' => 'wp/v2/',
-			// ),
-			// 'lang' => array(
-			// 	'current' => function_exists('pll_current_language') ? pll_current_language(): false,
-			// ),
 			'locale' => gutenberg_get_jed_locale_data( 'expa' ),
 		);
 	}

@@ -10,11 +10,11 @@ if ( ! defined( 'WPINC' ) ) {
  *
  * @param WP_Post		$post				post object
  * @param string		$attr_key			the attribute key
- * @param string|false	$delimiter			The delimiter, seperates the values. If false, returns first match only
+ * @param string|false	$delimiter			The delimiter, separates the values. If false, returns first match only
  * @param string		$before				string to prepend
  * @param string		$after				string to append
  *
- * @return string		$attr_formatted		attr values as string. seperated by delimiter
+ * @return string		$attr_formatted		attr values as string. separated by delimiter
  */
 function expa_get_formatted_post_attr( $post = null, $attr_key = null, $delimiter = '', $before = '', $after = ''  ) {
 	if ( null === $attr_key )
