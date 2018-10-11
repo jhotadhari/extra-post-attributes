@@ -8,9 +8,11 @@
 - Possibility to set default pairs, see 'js filters'. Default pairs can't be removed by user. At least one pair with that key must be existing.
 
 ## Usage within Gutenberg
+
 **Post Status Info Control: "Extra Post Attribues"**
 To add/update/delete the Extra Post Attribute Pairs. The Pairs are saved to the post meta data.
 The control is located within the publish panel.
+
 **Block: "Extra Post Attributes"**
 To display Extra Post Attribute Pairs.
 The Block is server side rendered in frontend. And rendered by ReactJS in Gutenberg.
@@ -21,10 +23,10 @@ Block Sidebar Panels:
 - Formatting
 
 ## Meta Data Usage
+
 Stores data as an array of ```{ key: '', value: '' }``` objects.
 The meta key is **```expa_post_atts```**. Note: The array is wrapped in an object ```pairs```.
-
-Example to access the ```pairs``` using the :
+Example to access the ```pairs``` using the ```expa_get_pairs_by_postid``` helper function:
 ```
 $expa_pairs = expa_get_pairs_by_postid( $post->ID );
 foreach( $expa_pairs as $pair ) {

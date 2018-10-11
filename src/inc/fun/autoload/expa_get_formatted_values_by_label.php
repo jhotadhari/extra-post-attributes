@@ -23,7 +23,7 @@ function expa_get_formatted_values_by_label( $post_id = null, $pairs = null, $pa
 		case 'characterSeparated':
 			return implode( '', array(
 				'<span>',
-				implode( expa_array_get( $args, 'formatting.general.valueSeparator', '/' ), expa_get_values_by_label( $post_id , $pairs, $pair_label ) ),
+					implode( expa_array_get( $args, 'formatting.general.valueSeparator', '/' ), expa_get_values_by_label( $post_id , $pairs, $pair_label ) ),
 				'</span>',
 			) );
 

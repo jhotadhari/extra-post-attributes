@@ -133,28 +133,32 @@ class Expa_Block {
 		$pairs = expa_array_get( $expa_post_atts, 'pairs', array() );
 		$filtered_pairs = expa_get_filtered_pairs( $post_id, $pairs, $attributes['args'] );
 
+		$unique_pair_labels = array();
+		foreach( $filtered_pairs as $pair ) {
+			if ( ! in_array( $pair['key'], $unique_pair_labels ) )
+				array_push( $unique_pair_labels, $pair['key']);
+		}
+
 		// wrapper open
 		$html_arr = array(
 			'<div class="expa-block">',
 				'<ul>',
 		);
 
-		foreach( $filtered_pairs as $pair ) {
-			$label_name = $pair['key'];
+		foreach( $unique_pair_labels as $pair_label ) {
 			/**
 			 * Filter the label name
 			 * eg: translate it
 			 *
 			 * @param string		$label_name
-			 * @param array			$pair
 			 * @param int			$post_id
 			 * @return string
 			 */
-			$label_name = apply_filters( 'expa_pair_label_name', $label_name, $pair, $post_id, $attributes['args'] );
+			$label_name = apply_filters( 'expa_pair_label_name', $pair_label, $post_id, $attributes['args'] );
 			$html_arr = array_merge( $html_arr, array(
 				'<li>',
 					strlen( $label_name ) > 0 ? '<span>' . $label_name . ': </span>' : '',
-					expa_get_formatted_values_by_label( $post_id, $filtered_pairs, $pair['key'], $attributes['args'] ),
+					expa_get_formatted_values_by_label( $post_id, $filtered_pairs, $pair_label, $attributes['args'] ),
 				'</li>',
 			) );
 		}

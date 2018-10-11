@@ -33,6 +33,7 @@ class BasePrintPairsComponent extends Component {
 		this.renderValues = this.renderValues.bind( this );
 		this.getPairValues = this.getPairValues.bind( this );
 		this.getFilteredPairs = this.getFilteredPairs.bind( this );
+		this.getUniqueLabels = this.getUniqueLabels.bind( this );
 	}
 
 	// set initial block attributes
@@ -53,13 +54,17 @@ class BasePrintPairsComponent extends Component {
 			args,
 			meta: { pairs },
 		} = this.props;
-		return uniq( reject( [...pairs].map( pair => {
+		return reject( [...pairs].map( pair => {
 			if ( ! args.include.all && ! args.include.keys.includes( pair.key ) ) return null;
 			if ( args.exclude.keys.includes( pair.key ) ) return null;
 			if ( args.exclude.emptyKeys && ! pair.key.length ) return null;
 			if ( args.exclude.emptyValues && ! pair.value.length ) return null;
 			return pair;
-		} ), l => l === null ) );
+		} ), l => l === null )
+	}
+
+	getUniqueLabels() {
+		return uniq( [...this.getFilteredPairs()].map( pair => pair.key ) );
 	}
 
 	renderValues( pairLabel ) {
@@ -94,26 +99,18 @@ class BasePrintPairsComponent extends Component {
 		} = this.props;
 
 		return [
-
 			<div className={ 'expa-pairs' }>
 				<ul>
-
-					{ [...this.getFilteredPairs()].map( pair  => [
-
-						<li key={ pair.key }>
-
-							{ pair.key.length ? (
+					{ [...this.getUniqueLabels()].map( pairLabel => [
+						<li key={ pairLabel }>
+							{ pairLabel.length ? (
 								<span>
-									{ applyFilters( 'expa.pair.labelName', pair.key, pair, postId ) + ': ' }
+									{ applyFilters( 'expa.pair.labelName', pairLabel, postId ) + ': ' }
 								</span>
 							) : ( '' ) }
-
-							{ this.renderValues( pair.key ) }
-
+							{ this.renderValues( pairLabel ) }
 						</li>
-
-					] ) }
-
+					], [] ) }
 				</ul>
 
 			</div>
