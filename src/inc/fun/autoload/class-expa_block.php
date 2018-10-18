@@ -31,7 +31,7 @@ class Expa_Block {
 	public function hooks() {
 		add_action( 'init', array( $this, 'register_block' ) );
 		add_action( 'enqueue_block_editor_assets', array( $this, 'enqueue_editor_assets' ) );
-		// add_action( 'enqueue_block_assets', array( $this, 'enqueue_frontend_assets' ) );
+		add_action( 'enqueue_block_assets', array( $this, 'enqueue_frontend_assets' ) );
 	}
 
 	public function register_block() {
@@ -39,7 +39,7 @@ class Expa_Block {
 			register_block_type( $this->namspace, array(
 				'editor_script' => $this->get_handle( 'editor' ),
 				'editor_style' => $this->get_handle( 'editor' ),
-				// 'style' => $this->get_handle( 'frontend' ),
+				'style' => $this->get_handle( 'frontend' ),
 				// 'script' => $this->get_handle( 'frontend' ),
 				'render_callback' => array( $this, 'render' ),
 			) );
@@ -60,36 +60,36 @@ class Expa_Block {
 		);
 	}
 
-	// public function enqueue_frontend_assets() {
+	public function enqueue_frontend_assets() {
 
-	// 	// check if we are on frontend
-	// 	if ( is_admin() )
-	// 		return;
+		// check if we are on frontend
+		if ( is_admin() )
+			return;
 
-	// 	$handle = $this->get_handle( 'frontend' );
+		$handle = $this->get_handle( 'frontend' );
 
-	// 	wp_enqueue_style(
-	// 		$handle,
-	// 		Expa_Extra_post_attributes::plugin_dir_url() . '/css/' . $handle . '.min.css',
-	// 		array( 'wp-blocks' ),
-	// 		filemtime( Expa_Extra_post_attributes::plugin_dir_path() . 'css/' . $handle . '.min.css' )
-	// 	);
+		wp_enqueue_style(
+			$handle,
+			Expa_Extra_post_attributes::plugin_dir_url() . '/css/' . $handle . '.min.css',
+			array( 'wp-blocks' ),
+			filemtime( Expa_Extra_post_attributes::plugin_dir_path() . 'css/' . $handle . '.min.css' )
+		);
 
-	// 	wp_register_script(
-	// 		$handle,
-	// 		Expa_Extra_post_attributes::plugin_dir_url() . '/js/' . $handle . '.min.js',
-	// 		array(
-	// 			// 'wp-backbone',
-	// 			// 'wp-api',
-	// 			// 'utils',
-	// 			),
-	// 		filemtime( Expa_Extra_post_attributes::plugin_dir_path() . 'js/' . $handle . '.min.js' )
-	// 	);
+		// wp_register_script(
+		// 	$handle,
+		// 	Expa_Extra_post_attributes::plugin_dir_url() . '/js/' . $handle . '.min.js',
+		// 	array(
+		// 		// 'wp-backbone',
+		// 		// 'wp-api',
+		// 		// 'utils',
+		// 		),
+		// 	filemtime( Expa_Extra_post_attributes::plugin_dir_path() . 'js/' . $handle . '.min.js' )
+		// );
 
-	// 	wp_localize_script( $handle, 'expaData', $this->get_localize_data() );
+		// wp_localize_script( $handle, 'expaData', $this->get_localize_data() );
 
-	// 	wp_enqueue_script( $handle );
-	// }
+		// wp_enqueue_script( $handle );
+	}
 
 	// hooked on enqueue_block_editor_assets. So function will only run in admin
 	public function enqueue_editor_assets() {
@@ -133,6 +133,28 @@ class Expa_Block {
 		$pairs = expa_array_get( $expa_post_atts, 'pairs', array() );
 		$filtered_pairs = expa_get_filtered_pairs( $post_id, $pairs, $attributes['args'] );
 
+		$format = expa_array_get( $attributes, 'args.formatting.general.format', 'list' );
+		$tag_outer = 'div';
+		$tag_inner = 'div';
+		switch( $format ){
+			case 'list':
+				$tag_outer = 'ul';
+				$tag_inner = 'li';
+				break;
+			// case 'nestedDivs':
+			case 'inline':
+				$tag_outer = 'span';
+				$tag_inner = 'span';
+				break;
+		}
+
+		$show_label = expa_array_get( $attributes, 'args.formatting.general.showLabel', true );
+		$separator = expa_array_get( $attributes, 'args.formatting.general.separator', ', ' );
+
+
+
+
+
 		$unique_pair_labels = array();
 		foreach( $filtered_pairs as $pair ) {
 			if ( ! in_array( $pair['key'], $unique_pair_labels ) )
@@ -142,10 +164,10 @@ class Expa_Block {
 		// wrapper open
 		$html_arr = array(
 			'<div class="expa-block">',
-				'<ul>',
+				'<' . $tag_outer . '>',
 		);
 
-		foreach( $unique_pair_labels as $pair_label ) {
+		foreach( $unique_pair_labels as $index => $pair_label ) {
 			/**
 			 * Filter the label name
 			 * eg: translate it
@@ -156,16 +178,19 @@ class Expa_Block {
 			 */
 			$label_name = apply_filters( 'expa_pair_label_name', $pair_label, $post_id, $attributes['args'] );
 			$html_arr = array_merge( $html_arr, array(
-				'<li>',
-					strlen( $label_name ) > 0 ? '<span>' . $label_name . ': </span>' : '',
+				'<' . $tag_inner . '>',
+					$show_label && strlen( $label_name ) > 0 ? '<span>' . $label_name . ': </span>' : '',
 					expa_get_formatted_values_by_label( $post_id, $filtered_pairs, $pair_label, $attributes['args'] ),
-				'</li>',
+
+					'inline' === $format && count( $unique_pair_labels ) - 1 > $index ? '<span>' . $separator .'</span>' : '',
+
+				'</' . $tag_inner . '>',
 			) );
 		}
 
 		// wrapper close
 		$html_arr = array_merge( $html_arr, array(
-				'</ul>',
+				'</' . $tag_outer . '>',
 			'</div>',
 		) );
 

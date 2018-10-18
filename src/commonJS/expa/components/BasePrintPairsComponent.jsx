@@ -1,6 +1,7 @@
 /**
  * External dependencies
  */
+import extender from 'object-extender';
 import PropTypes from 'prop-types';
 import {
 	uniq,
@@ -24,6 +25,7 @@ const {
  * Internal dependencies
  */
 import defaults 					from '../defaults';
+import { getExpaDefault } 			from '../defaults';
 
 class BasePrintPairsComponent extends Component {
 
@@ -39,9 +41,11 @@ class BasePrintPairsComponent extends Component {
 	// set initial block attributes
 	componentDidMount() {
 		const { currentPostId, setAttributes, postId, args } = this.props;
-		setAttributes( { args: JSON.stringify( args ) } );
-		if ( null === postId )
-			setAttributes( { postId: currentPostId } );
+		const mergedAtts = extender.merge( getExpaDefault( 'args' ), args );
+		console.log( 'debug mergedAtts', mergedAtts );		// ??? debug
+
+		setAttributes( { args: JSON.stringify( mergedAtts ) } );
+		setAttributes( { postId: currentPostId } );
 	}
 
 	getPairValues( pairLabel ) {
@@ -98,20 +102,51 @@ class BasePrintPairsComponent extends Component {
 			postId,
 		} = this.props;
 
+		const format = get( args, ['formatting', 'general', 'format'] );
+		let TagOuter = 'div';
+		let TagInner = 'div';
+		switch( format ){
+			case 'list':
+				TagOuter = 'ul';
+				TagInner = 'li';
+				break;
+			// case 'nestedDivs':
+			case 'inline':
+				TagOuter = 'span';
+				TagInner = 'span';
+				break;
+		}
+
+		const uniqueLabels = this.getUniqueLabels();
+
 		return [
-			<div className={ 'expa-pairs' }>
-				<ul>
-					{ [...this.getUniqueLabels()].map( pairLabel => [
-						<li key={ pairLabel }>
-							{ pairLabel.length ? (
+			<div
+				className={ 'expa-pairs' }
+				style={ uniqueLabels.length ? {} : { minHeight: '50px' } }
+			>
+
+				<TagOuter>
+					{ [...uniqueLabels].map( ( pairLabel, index ) => [
+						<TagInner
+							key={ pairLabel }
+						>
+
+							{ get( args, ['formatting', 'general', 'showLabel'] ) && pairLabel.length ? (
 								<span>
 									{ applyFilters( 'expa.pair.labelName', pairLabel, postId ) + ': ' }
 								</span>
 							) : ( '' ) }
 							{ this.renderValues( pairLabel ) }
-						</li>
+
+							{ 'inline' === format && uniqueLabels.length - 1 > index &&
+								<span>
+									{ get( args, ['formatting', 'general', 'separator'], '' ) }
+								</span>
+							}
+
+						</TagInner>,
 					], [] ) }
-				</ul>
+				</TagOuter>
 
 			</div>
 		];

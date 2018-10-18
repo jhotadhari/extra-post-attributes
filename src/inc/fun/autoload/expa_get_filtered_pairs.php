@@ -22,7 +22,7 @@ function expa_get_filtered_pairs( $post_id = null, $pairs = null, $args = array(
 	foreach( $pairs as $pair ) {
 		if ( ! expa_array_get( $args, 'include.all' ) && ! array_key_exists( $pair['key'], expa_array_get( $args, 'include.keys', array() ) ) )
 			continue;
-		if ( array_key_exists( $pair['key'], expa_array_get( $args, 'exclude.keys', array() ) ) )
+		if ( in_array( $pair['key'], expa_array_get( $args, 'exclude.keys', array() ) ) )
 			continue;
 		if ( expa_array_get( $args, 'exclude.emptyKeys' ) && strlen( $pair['key'] ) === 0 )
 			continue;

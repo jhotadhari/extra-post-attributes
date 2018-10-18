@@ -40,6 +40,9 @@ export function getExpaDefault( key ) {
 				},
 				formatting: {
 					general: {
+						format: 'list',					// 'list' || 'nestedDivs' || 'inline'
+						separator: ', ',
+						showLabel: true,					// 'list' || 'div'
 						valueFormat: 'characterSeparated',		// 'characterSeparated' || 'list'
 						valueSeparator: '/',
 					},

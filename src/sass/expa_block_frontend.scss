@@ -3,19 +3,48 @@
 # style Extra Post Attributes Frontend
 # enqueued in frontend only
 --------------------------------------------------------------*/
-// @import "./expa_block_extra_post_attributes/label";
 
-// .wp-block-expa-extra-post-attributes {
-//     .expa-extra-post-attributes {
-//         &.serialized-value-example{
-//             span {
-//                 margin-left: 0.5em;
-//                 &:first-of-type{
-//                     margin-left: 0;
-//                 }
-//             }
-//         }
+.wp-block-expa-extra-post-attributes {
 
-//     }
+}
 
-// }
+.expa-post-attr-list {
+    list-style: none;
+    margin-left: 0;
+    padding-left: 0;
+    text-align: left;
+
+    &-row {
+
+        display: flex;
+        justify-content: space-between;
+        // align-items: center;
+        margin: 1em 0 0 0;
+        &:first-child {
+            margin-top: 0;
+        }
+
+        .expa-post-attr-label {
+            flex-basis: 0;
+            flex-grow: 0;
+            margin: 0em 1em 0em 0em;
+        }
+
+        .expa-post-attr-posts {
+            flex-grow: 1;
+
+            &-list {
+                margin: 0;
+                padding: 0 0 0 1.5em;
+
+                &-item {
+                    margin: 0.75em 0 0 0;
+                    &:first-child {
+                        margin-top: 0;
+                    }
+                }
+            }
+        }
+
+    }
+}

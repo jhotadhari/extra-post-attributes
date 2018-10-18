@@ -34,6 +34,7 @@ const {
     SelectControl,
     PanelBody,
     TextControl,
+    ToggleControl,
 } = wp.components;
 
 /**
@@ -65,6 +66,12 @@ class BlockInspector extends Component {
 					{ value: 'list', label: __( 'List', 'expa' ) },
 					{ value: 'characterSeparated', label: __( 'Character separated', 'expa' ) },
 				];
+			case 'format':
+				return [
+					{ value: 'list', label: __( 'List', 'expa' ) },
+					{ value: 'nestedDivs', label: __( 'Nested Divs', 'expa' ) },
+					{ value: 'inline', label: __( 'Inline', 'expa' ) },
+				];
 		}
 	}
 
@@ -80,7 +87,6 @@ class BlockInspector extends Component {
 		return [
 
 			<div className={ 'expa-inspector' } >
-
 
 				<PanelBody
 					title={ 'Post Meta data' }
@@ -235,6 +241,72 @@ class BlockInspector extends Component {
 							{ 'General' }
 						</div>
 					*/}
+
+					<SelectControl
+						label={ __( 'Format', 'expa' ) + ':' }
+						value={ get( args, ['formatting', 'general', 'format'] ) }
+						options={ this.getOptions( 'format' ) }
+						onChange={ ( val ) => {
+							const newArgs = {
+								...args,
+								formatting: {
+									...args.formatting,
+									general: {
+										...args.formatting.general,
+										format: val
+
+									}
+								},
+							};
+							setAttributes( {
+								args: JSON.stringify( newArgs ),
+							} );
+						} }
+					/>
+
+					{ 'inline' === get( args, ['formatting', 'general', 'format'] ) &&
+						<TextControl
+							label={ __( 'Separator', 'expa' ) }
+							value={ get( args, ['formatting', 'general', 'separator'] ) }
+							onChange={ ( val ) => {
+								const newArgs = {
+									...args,
+									formatting: {
+										...args.formatting,
+										general: {
+											...args.formatting.general,
+											separator: val
+
+										}
+									},
+								};
+								setAttributes( {
+									args: JSON.stringify( newArgs ),
+								} );
+							} }
+						/>
+					}
+
+					<ToggleControl
+						label={ __( 'Show Labels', 'expa' ) }
+						checked={  get( args, ['formatting', 'general', 'showLabel'] ) }
+						onChange={ ( val ) => {
+							const newArgs = {
+								...args,
+								formatting: {
+									...args.formatting,
+									general: {
+										...args.formatting.general,
+										showLabel: val
+
+									}
+								},
+							};
+							setAttributes( {
+								args: JSON.stringify( newArgs ),
+							} );
+						} }
+					/>
 
 					<SelectControl
 						label={ __( 'Value Format', 'expa' ) + ':' }

@@ -1,6 +1,7 @@
 /**
  * External dependencies
  */
+import extender from 'object-extender';
 // import _ from 'underscore';
 
 /**
@@ -24,13 +25,13 @@ const {
 /**
  * Internal dependencies
  */
-import defaults 					from './expa_editor_plugin/defaults';
-import { getExpaDefault }			from './expa_editor_plugin/defaults';
+import defaults 					from './expa/defaults';
+import { getExpaDefault }			from './expa/defaults';
 
-import composeWithExpaPostAtts		from './expa_editor_plugin/composeWithExpaPostAtts';
+import composeWithExpaPostAtts		from './expa/composeWithExpaPostAtts';
 
-import BasePrintPairsComponent 		from './expa_editor_plugin/components/BasePrintPairsComponent.jsx';
-import BaseBlockInspector 			from './expa_editor_plugin/components/BlockInspector.jsx';
+import BasePrintPairsComponent 		from './expa/components/BasePrintPairsComponent.jsx';
+import BaseBlockInspector 			from './expa/components/BlockInspector.jsx';
 
 // compose components
 const PrintPairsComponent = composeWithExpaPostAtts( BasePrintPairsComponent );
@@ -56,12 +57,14 @@ registerBlockType( 'expa/extra-post-attributes', {
 
     edit( { className, attributes, setAttributes } ) {
 
-    	let args = getExpaDefault( 'args' );
+    	let blockAttsArgs = {};
     	try {
-    		args = null === attributes.args ? args : JSON.parse( attributes.args );
+    		blockAttsArgs = null === attributes.args ? args : JSON.parse( attributes.args );
     	} catch(e) {
-    		args = args;
+    		blockAttsArgs = blockAttsArgs;
     	}
+
+    	const args = extender.merge( getExpaDefault( 'args' ), blockAttsArgs );
 
         return ([
 
@@ -74,15 +77,16 @@ registerBlockType( 'expa/extra-post-attributes', {
 			</InspectorControls>,
 
 			<div
-				style={ { minHeight: '200px' } }
 				className={ className }
 			>
+
 				<PrintPairsComponent
 					args={ args }
 					defaultPairs={ getExpaDefault( 'pairs' ) }
 					setAttributes={ setAttributes }
 					postId={ attributes.postId }
 				/>
+
 			</div>
         ]);
     },

@@ -10,10 +10,10 @@ const { BaseControl } = wp.components;
 /**
  * Internal dependencies
  */
-import defaults 					from './expa_editor_plugin/defaults';
-import { getExpaDefault }			from './expa_editor_plugin/defaults';
-import composeWithExpaPostAtts		from './expa_editor_plugin/composeWithExpaPostAtts';
-import BasePopoverPairsComponent 	from './expa_editor_plugin/components/BasePopoverPairsComponent.jsx';
+import defaults 					from './expa/defaults';
+import { getExpaDefault }			from './expa/defaults';
+import composeWithExpaPostAtts		from './expa/composeWithExpaPostAtts';
+import BasePopoverPairsComponent 	from './expa/components/BasePopoverPairsComponent.jsx';
 
 // compose components
 const PopoverPairsComponent = composeWithExpaPostAtts( BasePopoverPairsComponent );

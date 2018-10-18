@@ -52,11 +52,12 @@
     "jstify": "^0.14.0",
     "load-grunt-tasks": "^3.5.2",
     "node-bourbon": "^4.2.8",
+    "object-extender": "^2.0.4",
     "prop-types": "^15.6.2",
+    "shortid": "^2.2.13",
     "sort-object": "^3.0.2",
     "time-grunt": "^1.4.0",
     "uglifyify": "^4.0.5",
-    "shortid": "^2.2.13",
     "underscore": "^1.9.1"
   },
   "browserify-shim": {
