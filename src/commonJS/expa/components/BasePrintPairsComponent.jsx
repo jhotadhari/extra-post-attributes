@@ -42,7 +42,6 @@ class BasePrintPairsComponent extends Component {
 	componentDidMount() {
 		const { currentPostId, setAttributes, postId, args } = this.props;
 		const mergedAtts = extender.merge( getExpaDefault( 'args' ), args );
-		console.log( 'debug mergedAtts', mergedAtts );		// ??? debug
 
 		setAttributes( { args: JSON.stringify( mergedAtts ) } );
 		setAttributes( { postId: currentPostId } );

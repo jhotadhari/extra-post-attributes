@@ -5,7 +5,7 @@
   "uri": "https://waterproof-webdesign.info/wppr_project/extra-post-attributes",
   "textDomain": "expa",
   "domainPath": "/languages",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Store additional attributes for post, pages and custom post types",
   "main": "index.js",
   "scripts": {
