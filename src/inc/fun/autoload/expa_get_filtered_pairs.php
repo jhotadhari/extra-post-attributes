@@ -17,7 +17,6 @@ if ( ! defined( 'WPINC' ) ) {
  */
 function expa_get_filtered_pairs( $post_id = null, $pairs = null, $args = array() ) {
 	$pairs = expa_get_pairs_by_postid( $post_id, $pairs );
-
 	$filtered_pairs = array();
 	foreach( $pairs as $pair ) {
 		if ( ! expa_array_get( $args, 'include.all' ) && ! array_key_exists( $pair['key'], expa_array_get( $args, 'include.keys', array() ) ) )

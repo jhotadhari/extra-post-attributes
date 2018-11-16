@@ -97,6 +97,9 @@ function my_expa_exclude_woo( $post_types ) {
 }
 add_filter( 'expa_post_types', 'my_expa_exclude_woo', 10, 1 );
 ```
+**```expa_list_table_column_post_types```**
+Allows Plugins/themes to customize for which post types a column is added to the list table. Defaults to the return of expa_post_types.
+
 ### js filters
 **```expa.pair.labelName```** and **```expa.pair.valueName```**
 Allows Plugins/themes to change the label or value string displayed in the block. Example, translate key (label) and values in the block in Gutenberg:

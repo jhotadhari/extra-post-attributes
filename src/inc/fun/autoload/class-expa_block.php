@@ -151,10 +151,6 @@ class Expa_Block {
 		$show_label = expa_array_get( $attributes, 'args.formatting.general.showLabel', true );
 		$separator = expa_array_get( $attributes, 'args.formatting.general.separator', ', ' );
 
-
-
-
-
 		$unique_pair_labels = array();
 		foreach( $filtered_pairs as $pair ) {
 			if ( ! in_array( $pair['key'], $unique_pair_labels ) )
