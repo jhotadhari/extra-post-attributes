@@ -6,6 +6,7 @@ module.exports = {
 		keywords: [
 			'__',
 			'_e',
+			'_x',
 			'esc_html',
 			'esc_html__',
 			'esc_html_e',

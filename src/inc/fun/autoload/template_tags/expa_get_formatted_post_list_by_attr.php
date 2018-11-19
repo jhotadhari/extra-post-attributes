@@ -22,8 +22,6 @@ function expa_get_formatted_post_list_by_attr( $attr_key = null, $args = array()
 	$default_args = array(
 		'item_wrapper_extra_classes'	=> array(),
 		'item_wrapper_tag_name'   		=> 'ul',
-
-
 		'item_set_id'			=> false,
 		'item_extra_classes'	=> array(),
 		'item_tag_name'   		=> 'li',
@@ -71,12 +69,11 @@ function expa_get_formatted_post_list_by_attr( $attr_key = null, $args = array()
 		// loop posts
 		foreach( $items as $item ) {
 			$item_id = $item->ID;
-			$item_link = esc_url( get_permalink( $item ) );
+			$item_link = get_permalink( $item );
+			$item_link = apply_filters( 'expa_item_link', $item_link, $item );
+			$item_link = $item_link === false || is_wp_error( $item_link ) ? false : esc_url( $item_link );
 			$item_name = $item->post_title;
-			$item_link_element_open = is_wp_error( $item_link ) ? '' : '<a href="' . $item_link . '" title="' . $item_name . '" rel="bookmark" title="' . esc_html( $item_name ) . '">';
-
-
-
+			$item_link_element_open = $item_link ? '<a href="' . $item_link . '" title="' . $item_name . '" rel="bookmark" title="' . esc_html( $item_name ) . '">' : '';
 			$item_classes = array( 'expa-post-attr-posts-list-item' );
 			$item_classes = array_merge( $item_classes, $args['item_extra_classes'] );
 
@@ -121,7 +118,7 @@ function expa_get_formatted_post_list_by_attr( $attr_key = null, $args = array()
 							) );
 						break;
 					case 'more_button':
-						if ( strlen( $item_link ) > 0 && ! is_wp_error( $item_link ) )
+						if ( $item_link && strlen( $item_link ) > 0 )
 							$item_elements_arr = array_merge( $item_elements_arr, array(
 								'<div class="expa-post-attr-posts-list-item-more wp-block-button alignright is-style-squared">',
 									'<a href="' . $item_link . '" class="more-link float-right wp-block-button__link" rel="bookmark" title="' . esc_html( $item_name ) . '">',
@@ -139,6 +136,7 @@ function expa_get_formatted_post_list_by_attr( $attr_key = null, $args = array()
 
 							$separator = expa_array_get( $args, 'item_part_config.' . $item_part . '.separator', ', ' );
 							$show_label = expa_array_get( $args, 'item_part_config.' . $item_part . '.show_label', false );
+							$after_label = expa_array_get( $args, 'item_part_config.' . $item_part . '.after_label', ': ' );
 
 							$before = expa_array_get( $args, 'item_part_config.' . $item_part . '.before', '' );
 							$after = expa_array_get( $args, 'item_part_config.' . $item_part . '.after', '' );
@@ -149,7 +147,7 @@ function expa_get_formatted_post_list_by_attr( $attr_key = null, $args = array()
 								$item_elements_arr = array_merge( $item_elements_arr, array(
 									'<div class="expa-post-attr-posts-list-item-expa">',
 										$before,
-										$show_label ? apply_filters( 'expa_pair_label_name', $expa_key, $item_id ) . ': ' : '',
+										$show_label ? apply_filters( 'expa_pair_label_name', $expa_key, $item_id ) . $after_label : '',
 										$expa_values,
 										$after,
 									'</div>',

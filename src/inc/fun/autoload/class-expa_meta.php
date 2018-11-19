@@ -49,8 +49,6 @@ class Expa_Meta {
 
 	public function set_fields() {
 
-
-
 		$fields = array();
 
 		array_push( $fields, array(

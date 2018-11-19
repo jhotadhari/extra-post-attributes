@@ -3,8 +3,8 @@
 .expa-base-control-row {
     .components-base-control__field {
         display: flex;
-        label {
-            flex-basis: 100%;
-        }
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
     }
 }
