@@ -10,6 +10,7 @@ const configReadme = {
 			'Requires at least: <%= global["pkg"].wpRequiresAtLeast%>',
 			'Requires PHP: <%= global["pkg"].phpRequiresAtLeast%>',
 			'Stable tag: trunk\nLicense: <%= global["pkg"].license %>',
+			'License: <%= global["pkg"].license %>',
 			'License URI: <%= global["pkg"].licenseUri %>',
 			'',
 			'<%= global["pkg"].description %>',

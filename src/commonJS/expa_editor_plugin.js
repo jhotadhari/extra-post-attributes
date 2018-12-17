@@ -1,7 +1,7 @@
 /**
  * Wordpress dependencies
  */
-const { __, setLocaleData } = wp.i18n;
+const { __ } = wp.i18n;
 const { registerPlugin } = wp.plugins;
 const { Fragment } = wp.element;
 const { PluginPostStatusInfo } = wp.editPost;
@@ -17,11 +17,6 @@ import BasePopoverPairsComponent 	from './expa/components/BasePopoverPairsCompon
 
 // compose components
 const PopoverPairsComponent = composeWithExpaPostAtts( BasePopoverPairsComponent );
-
-setLocaleData( expaData.locale, 'expa' );
-
-
-
 
 const ExpaPostStatusInfoRow = () => (
     <Fragment>

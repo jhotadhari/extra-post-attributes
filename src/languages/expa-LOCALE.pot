@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: extra-post-attributes 0.0.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-11-19 16:37+0530\n"
+"POT-Creation-Date: 2018-12-17 12:57+0530\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -29,14 +29,6 @@ msgstr ""
 msgid "Page"
 msgstr ""
 
-#: src/inc/fun/autoload/template_tags/expa_get_formatted_post_list_by_attr.php:132
+#: src/inc/fun/autoload/template_tags/expa_get_formatted_post_list_by_attr.php:125
 msgid "Continue reading"
-msgstr ""
-
-#: src/commonJS/expa_block_editor.js:43
-msgid "Extra Post Attributes"
-msgstr ""
-
-#: src/commonJS/expa/defaults.js:21
-msgid "Extra Post Attribues"
 msgstr ""

@@ -7,7 +7,7 @@ import extender from 'object-extender';
 /**
  * WordPress dependencies
  */
-const { __, setLocaleData } = wp.i18n;
+const { __ } = wp.i18n;
 const { registerBlockType } = wp.blocks;
 const {
 	BaseControl,
@@ -36,8 +36,6 @@ import BaseBlockInspector 			from './expa/components/BlockInspector.jsx';
 // compose components
 const PrintPairsComponent = composeWithExpaPostAtts( BasePrintPairsComponent );
 const BlockInspector = composeWithExpaPostAtts( BaseBlockInspector );
-
-setLocaleData( expaData.locale, 'expa' );
 
 registerBlockType( 'expa/extra-post-attributes', {
 	title: __( 'Extra Post Attributes' ),

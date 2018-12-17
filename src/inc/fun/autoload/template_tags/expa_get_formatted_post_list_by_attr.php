@@ -38,7 +38,7 @@ function expa_get_formatted_post_list_by_attr( $attr_key = null, $args = array()
 			'description' 	=> array(),
 			'more_button'  	=> array(),
 		),
-
+		'order' 	  		=> 'ASC',
 	);
 
 	$args = wp_parse_args( $args, $default_args );
@@ -51,7 +51,7 @@ function expa_get_formatted_post_list_by_attr( $attr_key = null, $args = array()
 	);
 
 	// structure posts, get an array of keys with associated posts
-	$keys_with_posts = expa_structure_posts_by_post_attr_key( $posts, $attr_key );
+	$keys_with_posts = expa_structure_posts_by_post_attr_key( $posts, $attr_key, $args['order'] );
 
 	// loop keys_with_posts
 	foreach( $keys_with_posts as $key => $items ) {
@@ -122,7 +122,7 @@ function expa_get_formatted_post_list_by_attr( $attr_key = null, $args = array()
 							$item_elements_arr = array_merge( $item_elements_arr, array(
 								'<div class="expa-post-attr-posts-list-item-more wp-block-button alignright is-style-squared">',
 									'<a href="' . $item_link . '" class="more-link float-right wp-block-button__link" rel="bookmark" title="' . esc_html( $item_name ) . '">',
-										__( 'Continue reading','bier' ),
+										__( 'Continue reading','expa' ),
 										'<span class="screen-reader-text">' . $item_name . '</span>',
 									'</a>',
 								'</div>',
