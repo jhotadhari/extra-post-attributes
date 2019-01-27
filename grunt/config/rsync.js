@@ -6,9 +6,9 @@ module.exports = {
 	},
 	local_sync: {
 		options: {
-			src: '<%= local_sync.src %>',
-			dest: '<%= local_sync.dest %>',
-			delete: true                               
+			src: '<%= local_sync.src %>',		// will be set by local_sync
+			dest: '<%= local_sync.dest %>',		// will be set by local_sync
+			delete: true
 		}
 	}
 };

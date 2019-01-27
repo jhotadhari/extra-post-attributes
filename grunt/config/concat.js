@@ -32,6 +32,29 @@ const configReadme = {
 	],
 };
 
+const configPlugin_main_file = {
+	options: {
+		banner: [
+			'<?php',
+			'/*',
+			'Plugin Name: <%= global["pkg"].fullName %>',
+			'Plugin URI: <%= global["pkg"].uri %>',
+			'Description: <%= global["pkg"].description %>',
+			'Version: <%= global["pkg"].version %>',
+			'Author: <%= global["pkg"].author %>',
+			'Author URI: <%= global["pkg"].authorUri %>',
+			'License: <%= global["pkg"].license %>',
+			'License URI: <%= global["pkg"].licenseUri %>',
+			'Text Domain: <%= global["pkg"].textDomain %>',
+			'Domain Path: <%= global["pkg"].domainPath %>',
+			'Tags: <%= global["pkg"].tags %>',
+			'GitHub Plugin URI: <%= global["pkg"].gitHubPluginURI %>',
+			'Release Asset: true',
+			'*/',
+			'?>',
+		].join( '\n' ),
+	},
+};
 
 module.exports = {
 
@@ -46,29 +69,15 @@ module.exports = {
 	},
 
 	plugin_main_file: {
-		options: {
-			banner: [
-				'<?php',
-				'/*',
-				'Plugin Name: <%= global["pkg"].fullName %>',
-				'Plugin URI: <%= global["pkg"].uri %>',
-				'Description: <%= global["pkg"].description %>',
-				'Version: <%= global["pkg"].version %>',
-				'Author: <%= global["pkg"].author %>',
-				'Author URI: <%= global["pkg"].authorUri %>',
-				'License: <%= global["pkg"].license %>',
-				'License URI: <%= global["pkg"].licenseUri %>',
-				'Text Domain: <%= global["pkg"].textDomain %>',
-				'Domain Path: <%= global["pkg"].domainPath %>',
-				'Tags: <%= global["pkg"].tags %>',
-				'*/',
-				'?>',
-			].join( '\n' ),
-		},
-		src: [
-			'<%= dest_path %>/<%= global["pkg"].name %>.php'
-		],
-		dest: '<%= dest_path %>/<%= global["pkg"].name %>.php'
-	}
+		...configPlugin_main_file,
+		src: ['<%= dest_path %>/<%= global["pkg"].name %>.php' ],
+		dest: '<%= dest_path %>/<%= global["pkg"].name %>.php',
+	},
+
+	dummy_plugin_main_file: {
+		...configPlugin_main_file,
+		src: ['<%= global["pkg"].name %>.php' ],
+		dest: '<%= global["pkg"].name %>.php',
+	},
 
 };

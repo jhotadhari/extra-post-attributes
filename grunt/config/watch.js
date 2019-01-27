@@ -9,7 +9,8 @@ module.exports = {
 		],
 		tasks: [
 			'copy:root_files',
-			'local_sync:<%= local_sync.wp_install %>'
+			'local_sync:<%= local_sync.wp_install %>',
+			'_noticeReady',
 		]
 	},
 
@@ -21,7 +22,8 @@ module.exports = {
 		tasks: [
 			'string-replace:plugin_main_file',	// copies plugin_main_file to destination
 			'concat:plugin_main_file',		// add banner plugin_main_file
-			'local_sync:<%= local_sync.wp_install %>'
+			'local_sync:<%= local_sync.wp_install %>',
+			'_noticeReady',
 		]
 	},
 
@@ -36,7 +38,8 @@ module.exports = {
 		],
 		tasks: [
 			'copy:vendor',
-			'local_sync:<%= local_sync.wp_install %>'
+			'local_sync:<%= local_sync.wp_install %>',
+			'_noticeReady',
 		]
 	},
 
@@ -47,7 +50,8 @@ module.exports = {
 		],
 		tasks: [
 			'copy:images',
-			'local_sync:<%= local_sync.wp_install %>'
+			'local_sync:<%= local_sync.wp_install %>',
+			'_noticeReady',
 		]
 	},
 
@@ -58,7 +62,8 @@ module.exports = {
 		],
 		tasks: [
 			'copy:fonts',
-			'local_sync:<%= local_sync.wp_install %>'
+			'local_sync:<%= local_sync.wp_install %>',
+			'_noticeReady',
 		]
 	},
 
@@ -72,7 +77,8 @@ module.exports = {
 			'concat:readme',
 			'concat:readmeMd',
 			'wp_readme_to_markdown:readmeMd',
-			'local_sync:<%= local_sync.wp_install %>'
+			'local_sync:<%= local_sync.wp_install %>',
+			'_noticeReady',
 		]
 	},
 
@@ -85,7 +91,8 @@ module.exports = {
 		],
 		tasks: [
 			'string-replace:inc_to_dest',
-			'local_sync:<%= local_sync.wp_install %>'
+			'local_sync:<%= local_sync.wp_install %>',
+			'_noticeReady',
 		]
 	},
 
@@ -99,7 +106,8 @@ module.exports = {
 		tasks: [
 			'eslint:js',
 			'uglify:debug',
-			'local_sync:<%= local_sync.wp_install %>:<%= local_sync.version %>'
+			'local_sync:<%= local_sync.wp_install %>:<%= local_sync.version %>',
+			'_noticeReady',
 		]
 	},
 	commonJS: {
@@ -112,7 +120,8 @@ module.exports = {
 		tasks: [
 			'eslint:commonJS',
 			'browserify:debug',
-			'local_sync:<%= local_sync.wp_install %>:<%= local_sync.version %>'
+			'local_sync:<%= local_sync.wp_install %>:<%= local_sync.version %>',
+			'_noticeReady',
 		],
 		options: {
 			spawn: false,
@@ -126,7 +135,8 @@ module.exports = {
 		],
 		tasks: [
 			'sass:debug',
-			'local_sync:<%= local_sync.wp_install %>'
+			'local_sync:<%= local_sync.wp_install %>',
+			'_noticeReady',
 		]
 	},
 
@@ -140,7 +150,8 @@ module.exports = {
 		tasks: [
 			'potomo',
 			'po2json',
-			'local_sync:<%= local_sync.wp_install %>'
+			'local_sync:<%= local_sync.wp_install %>',
+			'_noticeReady',
 		]
 	}
 };

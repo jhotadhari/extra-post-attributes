@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: extra-post-attributes 0.0.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-12-17 12:57+0530\n"
+"POT-Creation-Date: 2019-01-27 16:25+0530\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,6 +19,26 @@ msgstr ""
 
 #: src/commonJS/expa/defaults.js:21
 msgid "Extra Post Attribues"
+msgstr ""
+
+#: src/commonJS/expa/components/_zzzz_PlaceholderNoLabels.jsx:43
+msgid ""
+"Drag images, upload new ones, select images from your library or adjust the "
+"the 'Items Source'."
+msgstr ""
+
+#: src/commonJS/expa/components/BasePopoverPairsComponent.jsx:147
+msgid "Overview"
+msgstr ""
+
+#: src/commonJS/expa/components/BasePrintPairsComponent.jsx:141
+msgid "This post doesn't have any attributes yet."
+msgstr ""
+
+#: src/commonJS/expa/components/BasePrintPairsComponent.jsx:143
+msgid ""
+"The attributes-overview can be accessed from the block-toolbar, editor-"
+"sidebar, block-sidebar or just click the block."
 msgstr ""
 
 #: src/commonJS/expa/components/BlockInspector.jsx:66

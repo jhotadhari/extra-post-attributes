@@ -1,27 +1,27 @@
 module.exports = {
-
-	vendor: {
+	
+	vendor: {		
 		expand: true,
 		cwd: 'vendor/',
 		src: ['**/*', '<%= pattern.global_exclude %>'],
-		dest: '<%= dest_path %>/vendor/'
+		dest: '<%= dest_path %>/vendor/'	
 	},
-
-	images: {
+	
+	images: {		
 		expand: true,
 		cwd: 'src/images/',
 		src: ['**/*', '<%= pattern.global_exclude %>'],
-		dest: '<%= dest_path %>/images/'
+		dest: '<%= dest_path %>/images/'	
 	},
-
-	fonts: {
+	
+	fonts: {		
 		expand: true,
 		cwd: 'src/fonts/',
 		src: ['**/*', '<%= pattern.global_exclude %>'],
-		dest: '<%= dest_path %>/fonts/'
+		dest: '<%= dest_path %>/fonts/'	
 	},
-
-	root_files: {
+	
+	root_files: {		
 		expand: true,
 		cwd: 'src/root_files/',
 		src: [
@@ -29,7 +29,7 @@ module.exports = {
 			'!<%= global["pkg"].name %>.php',
 			'<%= pattern.global_exclude %>'
 		],
-		dest: '<%= dest_path %>/'
-	},
-
+		dest: '<%= dest_path %>/'	
+	},	
+	
 };
