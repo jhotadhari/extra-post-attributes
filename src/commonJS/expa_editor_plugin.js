@@ -33,6 +33,7 @@ const ExpaPostStatusInfoRow = () => (
 				<PopoverPairsComponent
 					label={ getExpaDefault( 'label' ) }
 					defaultPairs={ getExpaDefault( 'pairs' ) }
+					popoverPosition={ 'left middle' }
 				/>
 
 			</BaseControl>

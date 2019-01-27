@@ -15,17 +15,25 @@ import {
 /**
  * WordPress dependencies
  */
-const { addFilter, applyFilters } = wp.hooks;
-
+const { __ } = wp.i18n;
+const { applyFilters } = wp.hooks;
 const {
 	Component
 } = wp.element;
+const {
+    Placeholder,
+    Tooltip,
+} = wp.components;
 
 /**
  * Internal dependencies
  */
 import defaults 					from '../defaults';
 import { getExpaDefault } 			from '../defaults';
+import composeWithExpaPostAtts		from '../composeWithExpaPostAtts';
+import BasePopoverPairsComponent 	from './BasePopoverPairsComponent.jsx';
+
+const PopoverPairsComponent = composeWithExpaPostAtts( BasePopoverPairsComponent );
 
 class BasePrintPairsComponent extends Component {
 
@@ -99,6 +107,8 @@ class BasePrintPairsComponent extends Component {
 			label,
 			args,
 			postId,
+
+			setAttributes,	// ??? neended?
 		} = this.props;
 
 		const format = get( args, ['formatting', 'general', 'format'] );
@@ -118,37 +128,62 @@ class BasePrintPairsComponent extends Component {
 
 		const uniqueLabels = this.getUniqueLabels();
 
-		return [
+		const RenderToggle = ( { isOpen, onToggle, onClose } ) => <>
 			<div
 				className={ 'expa-pairs' }
-				style={ uniqueLabels.length ? {} : { minHeight: '50px' } }
+				onClick={ onToggle } aria-expanded={ isOpen }
 			>
 
-				<TagOuter>
-					{ [...uniqueLabels].map( ( pairLabel, index ) => [
-						<TagInner
-							key={ pairLabel }
-						>
+				{ uniqueLabels.length === 0 &&
+					<Placeholder
+						label={ label }
+						instructions={ <>
+							<div style={ { margin: '0.5em' } }>{ __( "This post doesn't have any attributes yet." ) }</div>
+							<div style={ { margin: '0.5em' } }>{ __( "Click to open the attributes-overview and add attributes." ) }</div>
+							<div style={ { margin: '0.5em' } }>{ __( "The attributes-overview can be accessed from the block-toolbar, editor-sidebar, block-sidebar or just click the block." ) }</div>
+						</> }
+					>
+					</Placeholder>
+				}
 
-							{ get( args, ['formatting', 'general', 'showLabel'] ) && pairLabel.length ? (
-								<span>
-									{ applyFilters( 'expa.pair.labelName', pairLabel, postId ) + ': ' }
-								</span>
-							) : ( '' ) }
-							{ this.renderValues( pairLabel ) }
+				{ uniqueLabels.length > 0 &&
+					<Tooltip text={ __( "Click to open the attributes-overview and edit attributes." ) } >
 
-							{ 'inline' === format && uniqueLabels.length - 1 > index &&
-								<span>
-									{ get( args, ['formatting', 'general', 'separator'], '' ) }
-								</span>
-							}
+						<TagOuter>
+							{ [...uniqueLabels].map( ( pairLabel, index ) => <>
+								<TagInner
+									key={ pairLabel }
+								>
 
-						</TagInner>,
-					], [] ) }
-				</TagOuter>
+									{ get( args, ['formatting', 'general', 'showLabel'] ) && pairLabel.length ? (
+										<span>
+											{ applyFilters( 'expa.pair.labelName', pairLabel, postId ) + ': ' }
+										</span>
+									) : ( '' ) }
+									{ this.renderValues( pairLabel ) }
+
+									{ 'inline' === format && uniqueLabels.length - 1 > index &&
+										<span>
+											{ get( args, ['formatting', 'general', 'separator'], '' ) }
+										</span>
+									}
+
+								</TagInner>
+							</> ) }
+						</TagOuter>
+					</Tooltip>
+				}
 
 			</div>
-		];
+		</>;
+
+		return <>
+			<PopoverPairsComponent
+				label={ label }
+				defaultPairs={ getExpaDefault( 'pairs' ) }
+				RenderToggle={ RenderToggle }
+			/>
+		</>;
 	}
 }
 

@@ -96,11 +96,11 @@ class BlockInspector extends Component {
 				>
 
 					<BaseControl
-						label={ getExpaDefault( 'label' ) }
+						label={ label }
 						className={ 'expa-base-control-row' }
 					>
 						<PopoverPairsComponent
-							label={ getExpaDefault( 'label' ) }
+							label={ label }
 							defaultPairs={ getExpaDefault( 'pairs' ) }
 						/>
 					</BaseControl>

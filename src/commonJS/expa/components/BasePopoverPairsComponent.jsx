@@ -1,8 +1,9 @@
 /**
  * External dependencies
  */
-import PropTypes from 'prop-types';
-import arrayMove from 'array-move';
+import PropTypes 	from 'prop-types';
+import classnames 	from 'classnames';
+import arrayMove 	from 'array-move';
 import {
 	findWhere,
 	where,
@@ -12,12 +13,10 @@ import {
  * WordPress dependencies
  */
 const { applyFilters } = wp.hooks;
-// const { __ } = wp.i18n;
-
+const { __ } = wp.i18n;
 const {
 	Component
 } = wp.element;
-
 const {
     Button,
     Dashicon,
@@ -113,35 +112,44 @@ class BasePopoverPairsComponent extends Component {
 		const {
 			metaKey,
 			label,
+			popoverPosition,
+			RenderToggle,
 			meta: { pairs },
 		} = this.props;
 
-		return [
+		return <>
 			<Dropdown
-				contentClassName="expa-popover-content"
-				position="middle left"
+				contentClassName={ 'expa-popover-content' }
+				position={ popoverPosition || 'left middle' }
 				expandOnMobile={true}
 				className={''}
-				renderToggle={ ( { isOpen, onToggle, onClose } ) => (
-					<Button
-						onClick={ onToggle } aria-expanded={ isOpen }
-						className={'expa-button'}
-						title={ label }
-					>
-						<Dashicon icon={ 'editor-expand' } className="" />
-					</Button>
-				) }
+				renderToggle={ ( { isOpen, onToggle, onClose } ) => <>
+					{ RenderToggle && <RenderToggle isOpen={isOpen} onToggle={onToggle} onClose={onClose} /> }
+					{ ! RenderToggle &&
+						<Button
+							onClick={ onToggle } aria-expanded={ isOpen }
+							className={'expa-button'}
+							title={ label + ' ' + __( 'Overview', 'expa' ) }
+						>
+							<Dashicon icon={ 'editor-expand' } className="" />
+						</Button>
+					}
+				</> }
 				renderContent={ ({ isOpen, onToggle, onClose }) => (
-					<div className={ 'expa-pairs expa-pairs-' + metaKey }>
+					<div
+						className={ 'expa-pairs expa-pairs-' + metaKey }
+						onKeyPress={ e => e.stopPropagation() }
+						onKeyDown={ e => 'Escape' !== e.key && e.stopPropagation() }
+					>
 
 						<div className="components-popover__header">
 							<span className="components-popover__header-title">
-								{ label }
+								{ label + ' ' + __( 'Overview', 'expa' ) }
 							</span>
 							<IconButton className="components-popover__close" icon="no-alt" onClick={ onClose } />
 						</div>
 
-						<div className={ 'expa-popover-content-inner expa-pairs-inner' }>
+						<div className={ classnames( 'expa-popover-content-inner', 'expa-pairs-inner' ) }>
 
 							{ pairs.map( ( pair, index ) => [
 
@@ -164,14 +172,21 @@ class BasePopoverPairsComponent extends Component {
 									>
 										<input
 											value={ pair.value }
-											onChange={ ( event ) => this.onChangePair( index, 'value', event.target.value ) }
+											onChange={ ( event ) => {
+
+												console.log( 'debug onChange', event );		// ??? debug
+
+
+												this.onChangePair( index, 'value', event.target.value );
+
+											}}
 											type="text"
 										/>
 									</BaseControl>
 
 									<Button
 										onClick={ ( event ) => this.onMovePairUp( index ) }
-										className={'expa-move-item-up expa-button'}
+										className={ classnames( 'expa-button', 'expa-move-item-up' ) }
 										disabled={ index === 0 }
 									>
 										<Dashicon icon={ 'arrow-up-alt' } className="" />
@@ -179,7 +194,7 @@ class BasePopoverPairsComponent extends Component {
 
 									<Button
 										onClick={ ( event ) => this.onMovePairDown( index ) }
-										className={'expa-move-item-down expa-button'}
+										className={ classnames( 'expa-button', 'expa-move-item-down' ) }
 										disabled={ index + 1 === pairs.length }
 									>
 										<Dashicon icon={ 'arrow-down-alt' } className="" />
@@ -187,7 +202,7 @@ class BasePopoverPairsComponent extends Component {
 
 									<Button
 										onClick={ ( event ) => this.onRemovePair( index ) }
-										className={'expa-remove-item expa-button'}
+										className={ classnames( 'expa-button', 'expa-remove-item' ) }
 										disabled={ ! this.isPairRemoveable( index ) }
 									>
 										<Dashicon icon={ 'minus' } className="" />
@@ -201,7 +216,7 @@ class BasePopoverPairsComponent extends Component {
 
 						<div className="expa-pairs-bottom">
 							<IconButton
-								className="expa-add-item expa-button"
+								className={ classnames( 'expa-button', 'expa-add-item' ) }
 								icon="plus"
 								onClick={ this.onAddNewPair }
 							/>
@@ -214,7 +229,7 @@ class BasePopoverPairsComponent extends Component {
 					</div>
 				) }
 			/>
-		];
+		</>;
 	}
 }
 
