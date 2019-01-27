@@ -57,7 +57,7 @@ const handles = [
 		files: [{
 			expand: true,
 			src: [
-				'src/commonJS/expa.js',
+				'src/commonJS/' + handle + '.js',
 				'src/commonJS/expa/**/*.js',
 				'src/commonJS/expa/**/*.jsx',
 				'<%= pattern.global_exclude %>',

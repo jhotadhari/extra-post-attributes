@@ -3,19 +3,20 @@
 # This file is distributed under the same license as the extra-post-attributes package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: extra-post-attributes 0.0.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-01-27 17:25+0530\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"POT-Creation-Date: 2019-01-27 17:24+0530\n"
+"PO-Revision-Date: 2019-01-27 17:24+0530\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: de\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.8.7.1\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: src/commonJS/expa/defaults.js:21
 msgid "Extra Post Attributes"
@@ -27,13 +28,16 @@ msgstr ""
 
 #: src/commonJS/expa/components/BasePrintPairsComponent.jsx:141
 msgid "This post doesn't have any attributes yet."
-msgstr ""
+msgstr "Dieser Beitrag hat noch keine Attribute."
 
 #: src/commonJS/expa/components/BasePrintPairsComponent.jsx:143
 msgid ""
 "The attributes-overview can be accessed from the block-toolbar, editor-"
 "sidebar, block-sidebar or just click the block."
 msgstr ""
+"Die Attribute-Übersicht kann über die Block-Toolbar, die Editor-"
+"Seitenleiste, die Block-Seitenleiste oder einfach per Klick auf den Block "
+"aufgerufen werden."
 
 #: src/commonJS/expa/components/BlockInspector.jsx:66
 #: src/commonJS/expa/components/BlockInspector.jsx:71

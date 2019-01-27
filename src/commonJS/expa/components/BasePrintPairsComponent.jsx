@@ -138,16 +138,16 @@ class BasePrintPairsComponent extends Component {
 					<Placeholder
 						label={ label }
 						instructions={ <>
-							<div style={ { margin: '0.5em' } }>{ __( "This post doesn't have any attributes yet." ) }</div>
-							<div style={ { margin: '0.5em' } }>{ __( "Click to open the attributes-overview and add attributes." ) }</div>
-							<div style={ { margin: '0.5em' } }>{ __( "The attributes-overview can be accessed from the block-toolbar, editor-sidebar, block-sidebar or just click the block." ) }</div>
+							<div style={ { margin: '0.5em' } }>{ __( "This post doesn't have any attributes yet.", 'expa' ) }</div>
+							<div style={ { margin: '0.5em' } }>{ __( 'Click to open the attributes-overview and add attributes.', 'expa' ) }</div>
+							<div style={ { margin: '0.5em' } }>{ __( 'The attributes-overview can be accessed from the block-toolbar, editor-sidebar, block-sidebar or just click the block.', 'expa' ) }</div>
 						</> }
 					>
 					</Placeholder>
 				}
 
 				{ uniqueLabels.length > 0 &&
-					<Tooltip text={ __( "Click to open the attributes-overview and edit attributes." ) } >
+					<Tooltip text={ __( 'Click to open the attributes-overview and edit attributes.', 'expa' ) } >
 
 						<TagOuter>
 							{ [...uniqueLabels].map( ( pairLabel, index ) => <>
@@ -196,7 +196,7 @@ BasePrintPairsComponent.propTypes = {
 }
 
 BasePrintPairsComponent.defaultProps = {
-	label: 'Extra Post Attribues',
+	label: __( 'Extra Post Attributes', 'expa' ),
 	// meta: {
 	// 	pairs: [],
     // },

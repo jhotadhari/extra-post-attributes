@@ -18,7 +18,7 @@ const defaults = {
 export function getExpaDefault( key ) {
 	switch( key ){
 		case 'label':
-			return applyFilters( 'expa.ui.label', __( 'Extra Post Attribues', 'expa' ) );
+			return applyFilters( 'expa.ui.label', __( 'Extra Post Attributes', 'expa' ) );
 			break;
 		case 'pairs':
 			return applyFilters( 'expa.defaultPairs', [] );

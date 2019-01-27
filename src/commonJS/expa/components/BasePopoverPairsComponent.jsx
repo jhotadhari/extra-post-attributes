@@ -242,7 +242,7 @@ BasePopoverPairsComponent.propTypes = {
 }
 
 BasePopoverPairsComponent.defaultProps = {
-	label: 'Extra Post Attribues',
+	label: 'Extra Post Attributes',
 	// meta: {
 	// 	pairs: [],
     // },

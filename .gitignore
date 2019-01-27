@@ -15,6 +15,7 @@
 !composer.lock
 !changelog.json
 !readme.md
+!extra-post-attributes.php
 
 # include dir grunt
 !/grunt
