@@ -32,7 +32,6 @@ class Expa_Editor_Plugin {
 	 * @since 0.0.1
 	 */
 	protected function hooks() {
-		// add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_frontend_assets' ), 10, 0 );
 		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_editor_assets' ), 10, 0 );
 	}
 
@@ -43,42 +42,9 @@ class Expa_Editor_Plugin {
 		}
 	}
 
-	protected function get_localize_data(){
-		return array(
-			'locale' => gutenberg_get_jed_locale_data( 'expa' ),
-		);
-	}
-
-	/*
-	public function enqueue_frontend_assets(){
-
-		$handle = $this->get_handle( 'frontend' );
-
-		// wp_register_script(
-		// 	$handle,
-		// 	Expa_Extra_post_attributes::plugin_dir_url() . '/js/' . $handle . '.min.js',
-		// 	array(
-		// 		'wp-api',
-		// 		'wp-i18n',
-		// 	),
-		// 	false,
-		// 	true
-		// );
-
-		// wp_localize_script( $handle, 'expa_sculpture_plugin_data', $this->get_localize_data() );
-
-		// wp_enqueue_script( $handle );
-
-		// wp_register_style(
-		// 	$handle,
-		// 	Expa_Extra_post_attributes::plugin_dir_url() . '/css/' . $handle . '.min.css',
-		// 	array(
-		// 		'dashicons',
-		// 	)
-		// );
-		// wp_enqueue_style( $handle );
-	}
-	*/
+	// protected function get_localize_data(){
+	// 	return array();
+	// }
 
 	/**
 	 * Register script/style
@@ -112,8 +78,8 @@ class Expa_Editor_Plugin {
 			true
 		);
 
-		wp_localize_script( $handle, 'expaData', $this->get_localize_data() );
-
+		// wp_localize_script( $handle, 'expaData', $this->get_localize_data() );
+		wp_set_script_translations( $handle, 'expa', Expa_Extra_post_attributes::plugin_dir_path() . 'languages' );
 		wp_enqueue_script( $handle );
 
 		wp_register_style(

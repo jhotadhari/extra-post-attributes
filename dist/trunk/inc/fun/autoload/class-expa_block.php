@@ -31,7 +31,7 @@ class Expa_Block {
 	public function hooks() {
 		add_action( 'init', array( $this, 'register_block' ) );
 		add_action( 'enqueue_block_editor_assets', array( $this, 'enqueue_editor_assets' ) );
-		add_action( 'enqueue_block_assets', array( $this, 'enqueue_frontend_assets' ) );
+		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_frontend_assets' ) );	// could be enqueued on enqueue_block_assets but we need it for template_tags ascii2ebcdic well
 	}
 
 	public function register_block() {
@@ -54,16 +54,13 @@ class Expa_Block {
 
 	}
 
-	protected function get_localize_data(){
-		return array(
-			'locale' => gutenberg_get_jed_locale_data( 'expa' ),
-		);
-	}
+	// protected function get_localize_data(){
+	// 	return array();
+	// }
 
 	public function enqueue_frontend_assets() {
 
-		// check if we are on frontend
-		if ( is_admin() )
+		if ( is_admin() || ! apply_filters( 'expa_enqueue_frontend_assets', true )  )
 			return;
 
 		$handle = $this->get_handle( 'frontend' );
@@ -71,30 +68,15 @@ class Expa_Block {
 		wp_enqueue_style(
 			$handle,
 			Expa_Extra_post_attributes::plugin_dir_url() . '/css/' . $handle . '.min.css',
-			array( 'wp-blocks' ),
+			array(),
 			filemtime( Expa_Extra_post_attributes::plugin_dir_path() . 'css/' . $handle . '.min.css' )
 		);
 
-		// wp_register_script(
-		// 	$handle,
-		// 	Expa_Extra_post_attributes::plugin_dir_url() . '/js/' . $handle . '.min.js',
-		// 	array(
-		// 		// 'wp-backbone',
-		// 		// 'wp-api',
-		// 		// 'utils',
-		// 		),
-		// 	filemtime( Expa_Extra_post_attributes::plugin_dir_path() . 'js/' . $handle . '.min.js' )
-		// );
-
-		// wp_localize_script( $handle, 'expaData', $this->get_localize_data() );
-
-		// wp_enqueue_script( $handle );
 	}
 
 	// hooked on enqueue_block_editor_assets. So function will only run in admin
 	public function enqueue_editor_assets() {
 		$handle = $this->get_handle( 'editor' );
-
 
 		wp_register_script(
 			$handle,
@@ -108,8 +90,8 @@ class Expa_Block {
 			filemtime( Expa_Extra_post_attributes::plugin_dir_path() . 'js/' . $handle . '.min.js' )
 		);
 
-		wp_localize_script( $handle, 'expaData', $this->get_localize_data() );
-
+		// wp_localize_script( $handle, 'expaData', $this->get_localize_data() );
+		wp_set_script_translations( $handle, 'expa', Expa_Extra_post_attributes::plugin_dir_path() . 'languages' );
 		wp_enqueue_script( $handle );
 
 		wp_enqueue_style(
@@ -150,10 +132,6 @@ class Expa_Block {
 
 		$show_label = expa_array_get( $attributes, 'args.formatting.general.showLabel', true );
 		$separator = expa_array_get( $attributes, 'args.formatting.general.separator', ', ' );
-
-
-
-
 
 		$unique_pair_labels = array();
 		foreach( $filtered_pairs as $pair ) {

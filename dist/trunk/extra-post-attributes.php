@@ -3,7 +3,7 @@
 Plugin Name: Extra Post Attributes
 Plugin URI: https://waterproof-webdesign.info/wppr_project/extra-post-attributes
 Description: Store additional attributes for post, pages and custom post types
-Version: 0.0.3
+Version: 0.0.4
 Author: jhotadhari
 Author URI: https://waterproof-webdesign.info/
 License: GNU General Public License v2 or later
@@ -11,6 +11,8 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Text Domain: expa
 Domain Path: /languages
 Tags: gutenberg,attributes,meta
+GitHub Plugin URI: https://github.com/jhotadhari/extra-post-attributes
+Release Asset: true
 */
 ?><?php
 
@@ -22,7 +24,7 @@ if ( ! defined( 'WPINC' ) ) {
 class Expa_Extra_post_attributes {
 
 	protected static $instance = null;
-	const VERSION = '0.0.3';
+	const VERSION = '0.0.4';
 	const DB_VERSION = 0;			// int	increase the number if the database needs an update
 	const PLUGIN_SLUG = 'extra-post-attributes';
 	const PLUGIN_NAME = 'Extra Post Attributes';
@@ -42,7 +44,7 @@ class Expa_Extra_post_attributes {
 			*/
 		),
 		'php_version' => '5.6',		// required php version
-		'wp_version' => '4.9.6',			// required wp version
+		'wp_version' => '5.0',			// required wp version
 		'php_ext' => array(
 			/*
 			'xml' => array(

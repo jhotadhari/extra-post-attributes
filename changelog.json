@@ -1,5 +1,8 @@
 {
   "next": [
+    ""
+  ],
+  "0.0.4": [
     "WordPress 5.0 compatible, no backwards compatibility. Added Features and further information, see commit messages"
   ],
   "0.0.3": [

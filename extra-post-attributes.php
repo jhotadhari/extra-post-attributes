@@ -3,7 +3,7 @@
 Plugin Name: Extra Post Attributes
 Plugin URI: https://waterproof-webdesign.info/wppr_project/extra-post-attributes
 Description: Store additional attributes for post, pages and custom post types
-Version: 0.0.3
+Version: 0.0.4
 Author: jhotadhari
 Author URI: https://waterproof-webdesign.info/
 License: GNU General Public License v2 or later

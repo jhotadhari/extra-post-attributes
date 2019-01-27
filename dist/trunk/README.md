@@ -2,10 +2,11 @@
 **Tags:** gutenberg,attributes,meta  
 **Donate link:** https://waterproof-webdesign.info/donate  
 **Contributors:** [jhotadhari](https://profiles.wordpress.org/jhotadhari)  
-**Tested up to:** 4.9.8  
-**Requires at least:** 4.9.6  
+**Tested up to:** 5.0  
+**Requires at least:** 5.0  
 **Requires PHP:** 5.6  
 **Stable tag:** trunk  
+**License:** GNU General Public License v2 or later  
 **License:** GNU General Public License v2 or later  
 **License URI:** http://www.gnu.org/licenses/gpl-2.0.html  
 
@@ -111,6 +112,16 @@ function my_expa_exclude_woo( $post_types ) {
 }
 add_filter( 'expa_post_types', 'my_expa_exclude_woo', 10, 1 );
 ```
+**```expa_list_table_column_post_types```**
+Allows Plugins/themes to customize for which post types a column is added to the list table. Defaults to the return of expa_post_types.
+
+**```expa_item_link```**
+Allows Plugins/themes to change the item link for a specific post.
+If ```false``` is returned, anchor tag will be removed.
+Parameter:
+- ```$item_link``` string
+- ```$item``` Post object
+
 ### js filters
 **```expa.pair.labelName```** and **```expa.pair.valueName```**
 Allows Plugins/themes to change the label or value string displayed in the block. Example, translate key (label) and values in the block in Gutenberg:
@@ -182,6 +193,9 @@ Upload and install this Plugin the same way you'd install any other plugin.
 
 ## Changelog ##
 
+
+0.0.4
+WordPress 5.0 compatible, no backwards compatibility. Added Features and further information, see commit messages
 
 0.0.3
 see commit messages
