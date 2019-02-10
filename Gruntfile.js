@@ -40,7 +40,6 @@ function initConfigs(grunt, folderPath) {
 		commit_msg: "<%= global['commit_msg'] %>",
 		changelog: "<%= global['changelog'] %>",
 
-		// This is optional!
 		notify_hooks: {
 			options: {
 				enabled: true,
@@ -75,7 +74,7 @@ function onWatchUpdateConfig( grunt ) {
 		changedFiles = Object.create(null);
 	}, 200);
 
-	grunt.event.on( 'watch', function( action, filepath, target ) {
+	grunt.event.on('watch', function( action, filepath, target ) {
 		if ( 'commonJS' === target ){
 			changedFiles[filepath] = action;
 			onChange();
@@ -84,23 +83,20 @@ function onWatchUpdateConfig( grunt ) {
 }
 
 function updateJsConfig( grunt, changedFiles ) {
-	let changed = Object.keys( grunt.util._.omit( changedFiles, function(value, key, object) {
-		return path.extname(key) !== '.js'
-	}));
+	const changed = Object.keys( grunt.util._.omit( changedFiles, ( value, key, object ) => ! ['.js','.jsx'].includes( path.extname( key ) ) ) );
 
 	// update eslint config
-	grunt.config('eslint.commonJS.src', changed);
+	grunt.config('eslint.commonJS.src', changed );
 
 	// update browserify config
-	let config = grunt.config('browserify.debug.files' )[0];
+	const config = grunt.config('browserify.debug.files' )[0];
 	config.src = [];
 	grunt.util._.each( changed, function( filepath ){
 		let filepathCwd = filepath.replace( config.cwd + '/', '' );
-		// console.log( 'filepathCwd', filepathCwd );		// ??? debug
-
 		if ( -1 !== filepathCwd.indexOf('/') ) {
-			config.src.push( filepathCwd.substring( 0, filepathCwd.indexOf('/') ) + '.js' );
-			grunt.option( 'silent', true );
+			const rootFileMayBe = filepathCwd.substring( 0, filepathCwd.indexOf('/') ) + '.js';
+			config.src.push( rootFileMayBe );
+			grunt.file.expand( { cwd: 'src/commonJS' }, [rootFileMayBe] ).length > 0 ? grunt.option( 'silent', false ) : grunt.option( 'silent', true );
 		} else {
 			config.src.push( filepathCwd );
 			grunt.option( 'silent', false );

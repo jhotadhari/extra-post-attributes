@@ -1,5 +1,3 @@
-// const player = require('play-sound')();
-
 const playSound = require('../playSound');
 
 module.exports = function(grunt){
@@ -8,9 +6,6 @@ module.exports = function(grunt){
 	// used by build.js
 	// used by dist.js
 	grunt.registerTask('_noticeReady', 'sub task', function( process ) {
-
-
-
 
 		switch( process ){
 			case undefined:

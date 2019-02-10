@@ -23,7 +23,7 @@ module.exports = function(grunt){
 
 		// run tasks
 		grunt.task.run([
-			'watch'
+			'watch',
 		]);
 
 	});

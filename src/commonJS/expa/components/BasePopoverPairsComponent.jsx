@@ -114,6 +114,7 @@ class BasePopoverPairsComponent extends Component {
 			label,
 			popoverPosition,
 			RenderToggle,
+			args,	// need to pass the args to the Dropdown renderToggle to refresh the Dropdown-container-ref, when any args change. So the visible block content can be used as renderToggle.
 			meta: { pairs },
 		} = this.props;
 
@@ -122,9 +123,9 @@ class BasePopoverPairsComponent extends Component {
 				contentClassName={ 'expa-popover-content' }
 				position={ popoverPosition || 'left middle' }
 				expandOnMobile={true}
-				className={''}
+				className={ '' }
 				renderToggle={ ( { isOpen, onToggle, onClose } ) => <>
-					{ RenderToggle && <RenderToggle isOpen={isOpen} onToggle={onToggle} onClose={onClose} /> }
+					{ RenderToggle && <RenderToggle isOpen={isOpen} onToggle={onToggle} onClose={onClose} args={args} /> }
 					{ ! RenderToggle &&
 						<Button
 							onClick={ onToggle } aria-expanded={ isOpen }
@@ -172,14 +173,7 @@ class BasePopoverPairsComponent extends Component {
 									>
 										<input
 											value={ pair.value }
-											onChange={ ( event ) => {
-
-												console.log( 'debug onChange', event );		// ??? debug
-
-
-												this.onChangePair( index, 'value', event.target.value );
-
-											}}
+											onChange={ ( event ) => this.onChangePair( index, 'value', event.target.value ) }
 											type="text"
 										/>
 									</BaseControl>

@@ -182,6 +182,7 @@ class BasePrintPairsComponent extends Component {
 				label={ label }
 				defaultPairs={ getExpaDefault( 'pairs' ) }
 				RenderToggle={ RenderToggle }
+				args={ args }
 			/>
 		</>;
 	}

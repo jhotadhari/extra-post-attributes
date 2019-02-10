@@ -182,7 +182,7 @@ const composeWithExpaPostAtts = ( component, settingsKey = 'expa_post_atts' ) =>
 				}
 
 				componentDidUpdate( prevProps ) {
-					if ( ! isEqual( get( this.props, [ 'meta', 'pairs' ], [] ), get( this.state, [ 'meta', 'pairs' ], [] ) ) ) {
+					if ( ! isEqual( get( this.props, [ 'meta', 'pairs' ], [] ), get( this.state, [ 'meta', 'pairs' ], [] ) ) && undefined !== this.props.meta.pairs ) {
 						this.setState( {
 							...this.state,
 							meta: {
